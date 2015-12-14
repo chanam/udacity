@@ -199,9 +199,10 @@ div#notebook {
 <p>Dependent variable - time to name the ink color</p>
 </blockquote>
 <p><strong><a id='Q2'></a>2. What is an appropriate set of hypotheses for this task? What kind of statistical test do you expect to perform? Justify your choices.</strong></p>
-<blockquote><p>$H_0$ (null) - there is not a significant difference in the mean time to name the ink color between the congruent and incongruent sets words: $\mu_c = \mu_i$</p>
-<p>$H_A$ (alt) - the mean time to name the ink color is statistically different for the incongruent word set than the congruent word set: $\mu_c \neq \mu_i$.</p>
-<p>Statistical Test - we should perform a dependent t-test for paired samples to determine whether or not to reject the null hypothesis since the alternative hypothesis is that the mean time to name the ink color will be higher for the incongruent word set.  We will use the p = 0.05 to determine significance.</p>
+<blockquote><p>$H_0$ (null) - The time to name the ink color population means for the congruent ($\mu_c$) and incongruent ($\mu_i$) word sets are not different: $\mu_c = \mu_i$</p>
+<p>$H_A$ (alt) - The time to name the ink color population means for the congruent and incongruent word sets are different: $\mu_c \neq \mu_i$.</p>
+<p><em>Note</em>: these could also be stated in terms of the the difference $D = \mu_c - \mu_i$ between the two population means; $H_0$: $D = 0$, $H_A$: $D \neq 0$</p>
+<p>Statistical Test - We should perform a dependent t-test for paired samples to determine whether or not to reject the null hypothesis. Reasons for selecting this statistical test are (1) our samples only have 24 observations, (2) we cannot assume the samples are normally distributed, (3) we do not know the population standard deviation and (4) the samples are dependent since each subject repeated the task using each treatment (within subject design with two conditions).  Points 1-3 rule out a Z-test and point 4 means we must use a t-test for paired samples.  We will use the value p = 0.05 to determine significance.</p>
 </blockquote>
 <p>Now it’s your chance to try out the Stroop task for yourself. Go to <a href="https://www.google.com/url?q=https://faculty.washington.edu/chudler/java/ready.html&sa=D&usg=AFQjCNFRXmkTGaTjMtk1Xh0SPh-RiaZerA">this link</a>, which has a Java-based applet for performing the Stroop task. Record the times that you received on the task (you do not need to submit your times to the site.) Now, download <a href="https://www.google.com/url?q=https://drive.google.com/file/d/0B9Yf01UaIbUgQXpYb2NhZ29yX1U/view?usp%3Dsharing&sa=D&usg=AFQjCNGAjbK9VYD5GsQ8c_iRT9zH9QdOVg">this dataset</a> which contains results from a number of participants in the task. Each row of the dataset contains the performance for one participant, with the first number their results on the congruent task and the second number their performance on the incongruent task.</p>
 <p><strong><a id='Q3'></a>3. Report some descriptive statistics regarding this dataset. Include at least one measure of central tendency and at least one measure of variability.</strong></p>
@@ -211,7 +212,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -228,7 +229,7 @@ div#notebook {
 <span class="k">print</span> <span class="s">&#39;Number of observations:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">data_stroop</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
 <span class="k">print</span> <span class="s">&#39;Series Mean:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">data_stroop</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
 <span class="k">print</span> <span class="s">&#39;Series Median:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span><span class="n">data_stroop</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
-<span class="k">print</span> <span class="s">&#39;Standard Deviation:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span><span class="n">data_stroop</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+<span class="c">##print &#39;Standard Deviation:\n&#39;,data_stroop.std(ddof=0).round(3),&#39;\n&#39; # was just experimenting with the std() function</span>
 <span class="k">print</span> <span class="s">&#39;Sample Standard Deviation:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span><span class="n">data_stroop</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
 </pre></div>
 
@@ -259,12 +260,6 @@ Series Median:
 Congruent      14.356
 Incongruent    21.018
 Diff           -7.666
-dtype: float64 
-
-Standard Deviation:
-Congruent      3.484
-Incongruent    4.696
-Diff           4.762
 dtype: float64 
 
 Sample Standard Deviation:
@@ -1236,6 +1231,7 @@ p = 4.10300058571e-08
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><a id='Q6'></a>6. Optional: What do you think is responsible for the effects observed? Can you think of an alternative or similar task that would result in a similar effect? Some research about the problem will be helpful for thinking about these two questions!</strong></p>
 <p>One hypothesis is that we automatically associate a color with the written word such that when working with the congruent set our initial association is reinforced and enables us to complete the task faster, while the incongruent set requires us to confront this association and re-think our gut response making us go slower.  Some variants that have been performed before also included neutral sets (names of color written in black ink or squares of color) where you are only processing one type of information (words or color).  It suggests that we are also faster at procesing written information than color, but I wonder if this would be true for a nacent reader.  It would be interesting to perform the experiment on a group of kindergartners to see if the same effect is exhibited.</p>
+<p>As suggested by the reviewer, you could probably design similar tests for other senses.  For hearing and touch you could have sounds (hearing) and items (touch) presented with words on the screen that are either sound words (hearing) or texture words (touch) and create congruent and incongruent sets in much the same way.  The experimenters would have to be particularly careful how the different sounds and items were chosen though because each of these might have multiple associations that even when presented in a congruent set could cause response delays.  For example, when touching a stone the immediate association in someone's mind could be rough, cold, stone, hard or any other number of associations.  To control for this you could choose all like items like cloth swatches and that the subject should focus on the texture.</p>
 
 </div>
 </div>
